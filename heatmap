@@ -1,0 +1,26 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+from scipy import stats
+from scipy.stats import pearsonr
+
+data = pd.read_csv("fixedseasons.csv")
+
+columns_to_exclude = ['Unnamed: 0', 'draft_year']
+data_subset = data.drop(columns=columns_to_exclude)
+
+data = pd.read_csv("fixedseasons.csv")
+
+columns_to_exclude = ['Unnamed: 0', 'draft_year']
+data_subset = data.drop(columns=columns_to_exclude)
+
+corr = data_subset.corr()
+corr.style.background_gradient()
+
+decimal_places = 2
+plt.figure(figsize=(10, 8))
+sns.heatmap(corr, annot=True, linewidths=.5)
+
+plt.savefig('NBA_Heatmap.jpeg', bbox_inches='tight', dpi = 300)
+plt.show()
